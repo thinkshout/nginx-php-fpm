@@ -279,6 +279,8 @@ RUN export PATH="~/.composer/vendor/bin:$PATH" && \
     && mv drupal.phar /usr/local/bin/drupal
 # Get java for Behat/selenium/chromedriver tests
 RUN apk add --no-cache openjdk8-jre
+# The version of grep that ships with alpine doesn't understand -R.
+RUN apk --update add grep
 
 # Get Google Chrome (well, chromium)
 RUN apk add -U --no-cache --allow-untrusted chromium
