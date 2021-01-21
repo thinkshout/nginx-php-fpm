@@ -208,7 +208,7 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig) && \
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php -r "if (hash_file('SHA384', 'composer-setup.php') === '${EXPECTED_COMPOSER_SIGNATURE}') { echo 'Composer.phar Installer verified'; } else { echo 'Composer.phar Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
-    php composer-setup.php --install-dir=/usr/bin --filename=composer && \
+    php composer-setup.php --version=1.10.19 --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');"  && \
     pip install --upgrade pip && \
     pip install -r requirements.txt -U pip && \
@@ -289,6 +289,12 @@ RUN apk add -U --no-cache --allow-untrusted chromium
 # Moved here from project .circleci/config.yml to speed up circle runs.
 RUN composer global require -n "consolidation/cgr"
 RUN composer global require -n "pantheon-systems/terminus:~1"
+
+# Add phpcs so we can check code style before doing composer install
+RUN composer global require "squizlabs/php_codesniffer=*"
+RUN composer global require drupal/coder
+RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
+RUN phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
