@@ -157,6 +157,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log
 
+ADD requirements.txt requirements.txt
+
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
     echo /etc/apk/respositories && \
     apk update && \
@@ -208,7 +210,8 @@ RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repo
     php -r "if (hash_file('SHA384', 'composer-setup.php') === '${EXPECTED_COMPOSER_SIGNATURE}') { echo 'Composer.phar Installer verified'; } else { echo 'Composer.phar Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');"  && \
-    pip install -U pip && \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt -U pip && \
     pip install -U certbot && \
     mkdir -p /etc/letsencrypt/webrootauth && \
     apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
@@ -282,6 +285,10 @@ RUN apk add --no-cache openjdk8-jre
 
 # Get Google Chrome (well, chromium)
 RUN apk add -U --no-cache --allow-untrusted chromium
+
+# Moved here from project .circleci/config.yml to speed up circle runs.
+RUN composer global require -n "consolidation/cgr"
+RUN composer global require -n "pantheon-systems/terminus:~1"
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
