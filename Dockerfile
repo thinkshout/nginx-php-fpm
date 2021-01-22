@@ -293,8 +293,6 @@ RUN composer global require -n "pantheon-systems/terminus:~1"
 # Add phpcs so we can check code style before doing composer install
 RUN composer global require "squizlabs/php_codesniffer=*"
 RUN composer global require drupal/coder
-RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
-RUN phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
