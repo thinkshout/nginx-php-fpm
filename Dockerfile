@@ -290,8 +290,8 @@ RUN apk add -U --no-cache --allow-untrusted chromium
 RUN composer global require -n "consolidation/cgr"
 RUN composer global require -n "pantheon-systems/terminus:~1"
 
-# Add phpcs so we can check code style before doing composer install
-RUN composer global require "squizlabs/php_codesniffer=*"
+# Add phpcs so we can check code style before doing composer install.
+RUN composer global require squizlabs/php_codesniffer:3.5.5
 RUN composer global require drupal/coder:8.3.1
 
 # Add packages and settings for screener.io automated visual regression testing
