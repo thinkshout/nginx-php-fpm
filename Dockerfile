@@ -292,7 +292,7 @@ RUN composer global require -n "pantheon-systems/terminus:~1"
 
 # Add phpcs so we can check code style before doing composer install
 RUN composer global require "squizlabs/php_codesniffer=*"
-RUN composer global require drupal/coder
+RUN composer global require drupal/coder:8.3.1
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
@@ -300,7 +300,8 @@ RUN apk add --update nodejs nodejs-npm
 RUN npm config set unsafe-perm=true
 ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
-RUN npm install screener-runner@latest --global
+# can't to latest version since we're getting nodejs 8 from apk.
+RUN npm install screener-runner@0.11.10 --global
 
 # Add Scripts
 ADD scripts/start.sh /start.sh
