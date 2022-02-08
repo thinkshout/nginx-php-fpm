@@ -26,3 +26,11 @@ The ID of the container will be returned and run in the background. If you need 
 You can use bash on the image to test out commands for the dockerfile by using:
 
 `docker exec -it <The CONTAINER ID> /bin/bash`
+
+To cut a tag and push up an image to dockerhub, you would run:
+
+`docker tag <The IMAGE ID, aka 018305e0e124 above> thinkshout/nginx-php-fpm:<your branch name>`
+
+then push it to dockerhub:
+
+`docker push thinkshout/nginx-php-fpm:<your branch name>`
