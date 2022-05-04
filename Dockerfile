@@ -45,8 +45,8 @@ RUN apk add --update jq
 RUN apk add -U --no-cache nghttp2-dev
 RUN curl -O https://nodejs.org/download/release/v16.13.1/node-v16.13.1-linux-x64.tar.gz
 RUN tar xzf node-v16.13.1-linux-x64.tar.gz
-RUN export PATH="/node-v16.13.1-linux-x64/bin:${PATH}"
-RUN apk add -U --no-cache nodejs-npm
+RUN mv node-v16.13.1-linux-x64 /usr/local
+RUN export PATH="/usr/local/node-v16.13.1-linux-x64/bin:${PATH}"
 RUN npm config set unsafe-perm=true
 ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
