@@ -4,3 +4,5 @@ Most configuraton is handled by the fork source at https://github.com/richarvey/
 
 To build locally from the Dockerfile run:
 `docker build . -f Dockerfile`
+
+More detailed info on how to push to Docker Hub found here: https://library.thinkshoutlabs.com/articles/how-publish-new-docker-image-docker-hub
