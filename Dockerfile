@@ -42,8 +42,8 @@ RUN apk add -U --no-cache --allow-untrusted chromium
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.15/main/ nodejs=16.14.2-r0
-RUN apk add -U --no-cache nghttp2-dev nodejs-npm
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.14/main/ nodejs=14.19.0-r0 nghttp2-dev=1.43.0-r0
+RUN apk add -U --no-cache nodejs-npm
 RUN npm config set unsafe-perm=true
 ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
