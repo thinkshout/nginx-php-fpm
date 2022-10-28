@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm:1.9.1
+FROM richarvey/nginx-php-fpm:2.1.2
 
 LABEL maintainer="Maria Fisher <maria.fisher@thinkshout.com>"
 
@@ -42,7 +42,7 @@ RUN apk add -U --no-cache --allow-untrusted chromium
 
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
-RUN apk add -U --no-cache nghttp2-dev nodejs nodejs-npm
+RUN apk add -U --no-cache nghttp2-dev npm
 RUN npm config set unsafe-perm=true
 ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
