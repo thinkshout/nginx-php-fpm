@@ -193,7 +193,7 @@ RUN apk add -U --no-cache --allow-untrusted chromium
 # Add packages and settings for screener.io automated visual regression testing
 RUN apk add --update jq
 RUN apk add -U --no-cache nghttp2-dev npm
-RUN npm config set unsafe-perm=true
+ENV NPM_CONFIG_UNSAFE_PERM=true
 ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
 RUN npm install screener-runner@latest --global
