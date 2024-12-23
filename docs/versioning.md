@@ -11,7 +11,44 @@ We will use the [semver](http://ricostacruz.com/cheatsheets/semver.html) style n
 
 ### Current versions and tags
 
-The latest tag will always follow the master branch in git. the other versions will have releases attached.
+The latest tag will always follow the main branch in git. the other versions will have releases attached.
+
+#### PHP 8.2.x
+ 
+| Docker Tag | PHP Version | Nginx Version | Alpine Version | Container Scripts | Notes |
+|-----|-------|-----|--------|--------|----------|
+| 3.1.6 | 8.2.7 |1.24-r6 | 3.18 | 0.3.17 | upgrade to php 8.2.5 |
+| 3.1.5 | 8.2.6 |1.24-r6 | 3.18 | 0.3.17 | upgrade to php 8.2.6 |
+| 3.1.4 | 8.2.5 |1.22.1 | 3.17 | 0.3.17 | upgrade to php 8.2.5 |
+| 3.1.3 | 8.2.4 |1.22.1 | 3.17 | 0.3.17 | adding mongoDB support #281 |
+| 3.1.2 | 8.2.4 |1.22.1 | 3.17 | 0.3.17 | fix #280 |
+| 3.1.1 | 8.2.4 |1.22.1 | 3.17 | 0.3.17 | upgrade to php 8.2.4 |
+| 3.1.0 | 8.2.3 |1.22.1 | 3.17 | 0.3.17 | reduced image size |
+| 3.0.2 | 8.2.3 |1.22.1 | 3.17 | 0.3.17 | fixed gd2 and xsl errors |
+| 3.0.1 | 8.2.3 |1.22.1 | 3.17 | 0.3.17 | no cache typo fixed + TZ fixed in scripts |
+| 3.0.0 | 8.2.3 |1.22.1 | 3.17 | 0.3.16 | upgraded php to 8.2.3 switched to packaged nginx |
+
+These tags will be created on GitHub and as tags in docker hub.
+
+### Unmaintained tags:
+
+#### PHP 8.1.x
+
+| Docker Tag | PHP Version | Nginx Version | Alpine Version | Container Scripts | Notes |
+|-----|-------|-----|--------|--------|----------|
+| 2.1.4 | 8.1.9 |1.21.6 | 3.16 | 0.3.16 | nginx upgraded to 1.22.0 |
+| 2.1.3 | 8.1.6 |1.22.0 | 3.15 | 0.3.16 | nginx upgraded to 1.22.0 |
+| 2.1.2 | 8.1.6 |1.21.6 | 3.15 | 0.3.16 | mod lua upgraded to 0.10.17 |
+| 2.1.1 | 8.1.5 |1.21.6 | 3.15 | 0.3.16 | mod lua upgraded to 0.10.17 |
+| 2.1.0 | 8.1.5 |1.21.6 | 3.15 | 0.3.16 | remove bloat and shrink image by 2/3 |
+| 2.0.7 | 8.1.5 |1.21.6 | 3.15 | 0.3.16 | upgrade xdebug to 3.1.4 |
+| 2.0.6 | 8.1.5 |1.21.6 | 3.15 | 0.3.16 | upgrade php to 8.1.5 |
+| 2.0.5 | 8.1.4 |1.21.6 | 3.15 | 0.3.16 | upgrade php to 8.1.4 add new flags |
+| 2.0.4 | 8.1.3 |1.21.6 | 3.15 | 0.3.15 | re-enable modules soap, xsl, zip .... |
+| 2.0.3 | 8.1.3 |1.21.6 | 3.15 | 0.3.15 | added disable flag for opcache |
+| 2.0.2 | 8.1.3 |1.21.6 | 3.15 | 0.3.14 | fix gd and opcache extentions |
+| 2.0.1 | 8.1.3 |1.21.6 | 3.15 | 0.3.14 | upgrade to PHP 8.1.3 |
+| 2.0.0 | 8.1.2 |1.21.6 | 3.15 | 0.3.14 | upgrade to PHP 8 |
 
 #### PHP 7.4
 
@@ -19,10 +56,6 @@ The latest tag will always follow the master branch in git. the other versions w
 |-----|-------|-----|--------|--------|----------|
 | 1.9.0 | 7.4.2 |1.16.1 | 3.11 | 0.3.13 | upgrade to PHP 7.4.2 |
 | 1.9.1 | 7.4.5 |1.16.1 | 3.11 | 0.3.13 | upgrade to PHP 7.4.5 |
-
-These tags will be created on GitLab and as tags in docker hub.
-
-### Unmaintained tags:
 
 #### PHP 7.3
 
