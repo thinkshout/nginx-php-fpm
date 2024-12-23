@@ -134,28 +134,6 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
             /usr/local/etc/php/php.ini
 
 
-# Add Scripts
-ADD scripts/start.sh /start.sh
-ADD scripts/pull /usr/bin/pull
-ADD scripts/push /usr/bin/push
-ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
-ADD scripts/letsencrypt-renew /usr/bin/letsencrypt-renew
-RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/letsencrypt-setup && chmod 755 /usr/bin/letsencrypt-renew && chmod 755 /start.sh
-
-# copy in code
-ADD src/ /var/www/html/
-ADD errors/ /var/www/errors
-
-
-EXPOSE 443 80
-
-WORKDIR "/var/www/html"
-CMD ["/start.sh"]
-
-# Bring in our nginx customizations
-COPY conf/nginx-site.conf /etc/nginx/sites-available/default.conf
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-
 # TS Customizations
 RUN apk add --no-cache mysql-client \
     su-exec \
@@ -198,3 +176,25 @@ ENV NODE_PATH /usr/lib/node_modules
 RUN npm install dotenv@latest --global
 RUN npm install screener-runner@latest --global
 # End TS Customizations
+
+# Add Scripts
+ADD scripts/start.sh /start.sh
+ADD scripts/pull /usr/bin/pull
+ADD scripts/push /usr/bin/push
+ADD scripts/letsencrypt-setup /usr/bin/letsencrypt-setup
+ADD scripts/letsencrypt-renew /usr/bin/letsencrypt-renew
+RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/letsencrypt-setup && chmod 755 /usr/bin/letsencrypt-renew && chmod 755 /start.sh
+
+# copy in code
+ADD src/ /var/www/html/
+ADD errors/ /var/www/errors
+
+
+EXPOSE 443 80
+
+WORKDIR "/var/www/html"
+CMD ["/start.sh"]
+
+# Bring in our nginx customizations
+COPY conf/nginx-site.conf /etc/nginx/sites-available/default.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
